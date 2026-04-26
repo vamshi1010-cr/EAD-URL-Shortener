@@ -34,10 +34,18 @@ const getLocation = async (ip) => {
 
 const normalizeDevice = (userAgent) => {
   const parser = new UAParser(userAgent);
-  const deviceType = parser.getDevice().type;
+  const device = parser.getDevice();
+  const os = parser.getOS();
 
-  if (deviceType === 'mobile') return 'Mobile';
-  if (deviceType === 'tablet') return 'Tablet';
+  // 1. Check explicit device type
+  if (device.type === 'mobile') return 'Mobile';
+  if (device.type === 'tablet') return 'Tablet';
+
+  // 2. Fallback: Check Operating System (Very common for iPhones)
+  const mobileOS = ['iOS', 'Android', 'Windows Phone', 'BlackBerry'].includes(os.name);
+  if (mobileOS) return 'Mobile';
+
+  // 3. Default to Desktop
   return 'Desktop';
 };
 
