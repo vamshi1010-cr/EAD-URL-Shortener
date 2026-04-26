@@ -11,8 +11,9 @@ exports.createShortUrl = async (req, res) => {
     }
 
     const shortCode = nanoid(8);
-    const baseUrl = process.env.CLIENT_URL || `${req.protocol}://${req.get('host')}`;
-    const shortUrl = `${baseUrl}/r/${shortCode}`;
+   // Use a specific BASE_URL for redirects (the Render URL)
+const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
+const shortUrl = `${baseUrl}/r/${shortCode}`;
 
     const qrCodeData = await QRCode.toDataURL(shortUrl);
 
