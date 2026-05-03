@@ -16,6 +16,8 @@ const trimUrl = (url) => {
   return url;
 };
 
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL?.replace(/\/api\/?$/, '') || 'http://localhost:5000';
+
 const deviceIcon = (device) => {
   if (device === 'Mobile') return '📱';
   if (device === 'Tablet') return '📟';
@@ -310,7 +312,16 @@ const DashboardPage = () => {
                     {urls.map((url) => (
                       <tr key={url._id} className="hover:bg-slate-50">
                         <td className="px-4 py-4 text-slate-700">{trimUrl(url.originalUrl)}</td>
-                        <td className="px-4 py-4 text-blue-600 hover:underline break-all">{`${window.location.origin}/r/${url.shortCode}`}</td>
+                        <td className="px-4 py-4 break-all">
+                        <a
+                          href={`${apiBaseUrl}/r/${url.shortCode}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-blue-600 hover:underline break-all"
+                        >
+                          {`${apiBaseUrl}/r/${url.shortCode}`}
+                        </a>
+                      </td>
                         <td className="px-4 py-4 font-semibold text-slate-900">{url.clicks || 0}</td>
                         <td className="px-4 py-4">{deviceIcon(url.lastDevice || 'Desktop')}</td>
                         <td className="px-4 py-4">
