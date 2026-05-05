@@ -11,7 +11,6 @@ exports.createShortUrl = async (req, res) => {
     }
 
     const shortCode = nanoid(8);
-   // Use a specific BASE_URL for redirects (the Render URL)
 const baseUrl = process.env.BASE_URL || `${req.protocol}://${req.get('host')}`;
 const shortUrl = `${baseUrl}/r/${shortCode}`;
 

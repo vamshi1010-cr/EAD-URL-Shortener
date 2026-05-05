@@ -8,3 +8,5 @@ router.get('/', auth, getUrls);
 router.get('/analytics/last-7-days', auth, getClicksLast7Days);
 
 module.exports = router;
+
+
