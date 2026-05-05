@@ -227,13 +227,11 @@ The application follows a **3-tier architecture**:
 - Analytics are tracked for each URL redirect
 - QR codes are generated in the backend and served to frontend
 
-## 📄 License
 
-ISC
 
-## 👤 Author
+## 👤 Authors
 
-Your Name / Organization
+K Vamshi Chandra Reddy & Abhinav Regilla/ CBIT IT
 
 ---
 
